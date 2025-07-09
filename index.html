@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ainur Rahman Hidayat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="antialiased">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-md z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-xl font-bold text-indigo-600">Ainur Rahman Hidayat</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-4">
+                        <a href="#home" class="animated-underline px-3 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600">Home</a>
+                        <a href="#portfolio" class="animated-underline px-3 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600">Portfolio</a>
+                        <a href="#knowledge" class="animated-underline px-3 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600">Knowledge Base</a>
+                        <a href="#about" class="animated-underline px-3 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600">About</a>
+                        <a href="#contact" class="ml-4 px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 transition-colors duration-200">Contact</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu, hidden by default -->
+        <div id="mobile-menu" class="hidden md:hidden shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Home</a>
+                <a href="#portfolio" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Portfolio</a>
+                <a href="#knowledge" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Knowledge Base</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">About</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-20 hero-gradient text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:flex lg:items-center lg:justify-between">
+                <div class="flex-1 min-w-0">
+                    <h1 class="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+                        Building <span class="block">Knowledge Portfolio</span>
+                    </h1>
+                    <p class="mt-6 text-xl max-w-3xl">
+                        Documenting my learning journey and showcasing professional projects in an elegant, modern interface.
+                    </p>
+                    <div class="mt-10 flex gap-4">
+                        <a href="#portfolio" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 transition-colors duration-200">
+                            View Portfolio
+                        </a>
+                        <a href="#knowledge" class="inline-flex items-center px-6 py-3 border border-2 border-white text-base font-medium rounded-md text-white hover:bg-white hover:bg-opacity-10 transition-colors duration-200">
+                            Explore Knowledge
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-10 lg:mt-0 lg:ml-8 lg:flex-shrink-0">
+                    <img src="https://placehold.co/500x400" alt="Professional developer working with multiple screens showing code and design interfaces in a modern home office setup" class="rounded-lg shadow-xl w-full max-w-md">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Featured Projects
+                </h2>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                    A curated collection of my finest work and professional accomplishments
+                </p>
+            </div>
+            
+            <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <!-- Project Card 1 -->
+                <div class="card-hover bg-white rounded-xl overflow-hidden shadow-md border border-gray-100">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://placehold.co/600x400" alt="Dashboard application with analytics charts and user management interface in dark mode" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-indigo-600 bg-opacity-60 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="px-6 py-2 bg-white text-indigo-600 rounded-full font-semibold hover:bg-gray-100">View Details</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800">Analytics Dashboard</h3>
+                        <p class="mt-2 text-gray-600">
+                            Real-time data visualization platform with custom interactive charts.
+                        </p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs font-medium rounded-full">React</span>
+                            <span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs font-medium rounded-full">D3.js</span>
+                            <span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs font-medium rounded-full">Node.js</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Card 2 -->
+                <div class="card-hover bg-white rounded-xl overflow-hidden shadow-md border border-gray-100">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://placehold.co/600x400" alt="Mobile app screenshots displaying food delivery interface with restaurant selection and order tracking" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-indigo-600 bg-opacity-60 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="px-6 py-2 bg-white text-indigo-600 rounded-full font-semibold hover:bg-gray-100">View Details</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800">Food Delivery App</h3>
+                        <p class="mt-2 text-gray-600">
+                            Mobile application connecting users with local restaurants and delivery services.
+                        </p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Flutter</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Firebase</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Google Maps API</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Card 3 -->
+                <div class="card-hover bg-white rounded-xl overflow-hidden shadow-md border border-gray-100">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://placehold.co/600x400" alt="E-commerce website with product listings, shopping cart, and payment interface on desktop view" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-indigo-600 bg-opacity-60 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="px-6 py-2 bg-white text-indigo-600 rounded-full font-semibold hover:bg-gray-100">View Details</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800">E-Commerce Platform</h3>
+                        <p class="mt-2 text-gray-600">
+                            Complete online shopping solution with inventory management and payment processing.
+                        </p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded-full">Vue.js</span>
+                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded-full">Laravel</span>
+                            <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded-full">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="#" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition-colors duration-200">
+                    View All Projects
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Knowledge Base Section -->
+    <section id="knowledge" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Knowledge Repository
+                </h2>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                    Documented learnings, tutorials, and insights from my professional journey
+                </p>
+            </div>
+            
+            <div class="mt-12 grid gap-6 md:grid-cols-2">
+                <!-- Knowledge Category 1 -->
+                <div class="knowledge-card relative bg-white p-6 rounded-lg shadow-sm border-l-4 border-indigo-500">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0 p-3 bg-indigo-100 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                            </svg>
+                        </div>
+                        <h3 class="ml-4 text-xl font-semibold text-gray-800">Web Development</h3>
+                    </div>
+                    <p class="text-gray-600">
+                        Comprehensive guides on modern web technologies, frameworks, and best practices.
+                    </p>
+                    <div class="mt-6">
+                        <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium">
+                            Explore Articles
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-200">
+                        <h4 class="text-sm font-medium text-gray-500 mb-2">Recent Topics</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-indigo-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-sm text-gray-600">React Performance Optimization</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-indigo-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-sm text-gray-600">TypeScript Best Practices</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-indigo-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-sm text-gray-600">CSS Architecture for Large Projects</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Knowledge Category 2 -->
+                <div class="knowledge-card relative bg-white p-6 rounded-lg shadow-sm border-l-4 border-green-500">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0 p-3 bg-green-100 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <h3 class="ml-4 text-xl font-semibold text-gray-800">Software Architecture</h3>
+                    </div>
+                    <p class="text-gray-600">
+                        Deep dives into system design, patterns, and scalable architecture approaches.
+                    </p>
+                    <div class="mt-6">
+                        <a href="#" class="text-green-600 hover:text-green-800 font-medium">
+                            Explore Articles
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-200">
+                        <h4 class="text-sm font-medium text-gray-500 mb-2">Recent Topics</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-sm text-gray-600">Microservices Communication Patterns</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-sm text-gray-600">Domain-Driven Design Implementation</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-sm text-gray-600">Event Sourcing Fundamentals</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Knowledge Category 3 -->
+                <div class="knowledge-card relative bg-white p-6 rounded-lg shadow-sm border-l-4 border-purple-500">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0 p-3 bg-purple-100 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <h3 class="ml-4 text-xl font-semibold text-gray-800">Mobile Development</h3>
+                    </div>
+                    <p class="text-gray-600">
+                        Techniques, patterns, and solutions for building high-quality mobile applications.
+                    </p>
+                    <div class="mt-6">
+                        <a href="#" class="text-purple-600 hover:text-purple-800 font-medium">
+                            Explore Articles
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-200">
+                        <h4 class="text-sm font-medium text-gray-500 mb-2">Recent Topics</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-purple-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-sm text-gray-600">Flutter State Management Comparison</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-purple-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-sm text-gray-600">React Native Performance Tips</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-purple-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-sm text-gray-600">Native vs Cross-Platform Analysis</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Knowledge Category 4 -->
+                <div class="knowledge-card relative bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0 p-3 bg-blue-100 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                            </svg>
+                        </div>
+                        <h3 class="ml-4 text-xl font-semibold text-gray-800">Data Science</h3>
+                    </div>
+                    <p class="text-gray-600">
+                        Practical data analysis, machine learning implementations, and visualization techniques.
+                    </p>
+                    <div class="mt-6">
+                        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">
+                            Explore Articles
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-200">
+                        <h4 class="text-sm font-medium text-gray-500 mb-2">Recent Topics</h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-sm text-gray-600">Pandas Optimization Strategies</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-sm text-gray-600">Feature Engineering Techniques</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-sm text-gray-600">Time Series Forecasting Models</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="#" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition-colors duration-200">
+                    Browse All Knowledge Categories
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:flex lg:items-center lg:justify-between">
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                        About My Journey
+                    </h2>
+                    <p class="mt-4 text-lg text-gray-600">
+                        With over 8 years of experience in software development, I've cultivated expertise across multiple domains while maintaining a passion for continuous learning.
+                    </p>
+                    <div class="mt-8">
+                        <div class="flex items-start mb-8">
+                            <div class="flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Expertise Breadth</h3>
+                                <p class="mt-2 text-gray-600">
+                                    From frontend aesthetics to backend architecture, I bridge the gap between design and implementation.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start mb-8">
+                            <div class="flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Knowledge Sharing</h3>
+                                <p class="mt-2 text-gray-600">
+                                    Documenting learnings is part of my process - making knowledge accessible benefits everyone.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">Quality Focus</h3>
+                                <p class="mt-2 text-gray-600">
+                                    Maintaining high standards in code quality, architecture, and user experience is non-negotiable.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-12 lg:mt-0 lg:ml-12 lg:w-1/2">
+                    <img src="https://placehold.co/600x400" alt="Developer presenting at a tech conference with a modern presentation slide showing code examples and architecture diagrams" class="rounded-lg shadow-xl w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-indigo-600">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center text-white">
+        <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Get In Touch
+        </h2>
+        <p class="mt-4 max-w-2xl text-xl mx-auto text-indigo-100">
+            Feel free to reach out via email or social media.
+        </p>
+        </div>
+
+        <div class="mt-12 bg-white/10 backdrop-blur-md rounded-xl shadow-lg px-8 py-12 text-center text-white">
+        <div class="flex justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-white" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">contact@eduportfolio.dev</h3>
+        <p class="text-indigo-100 mb-6">+1 (555) 123-4567</p>
+
+        <div class="flex justify-center space-x-6">
+            <!-- GitHub -->
+            <a href="#" class="text-white hover:text-indigo-200 transition">
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd"
+                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 
+                    0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466
+                    -.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647
+                    .35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253
+                    -.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337
+                    1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688
+                    0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 
+                    0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                    clip-rule="evenodd" />
+            </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="#" class="text-white hover:text-indigo-200 transition">
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 
+                2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.3c-.966
+                0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 
+                1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 
+                11.3h-3v-5.6c0-1.337-.027-3.063-1.867-3.063-1.868 
+                0-2.154 1.46-2.154 2.963v5.7h-3v-10h2.882v1.367h.041c.402-.762 
+                1.384-1.566 2.848-1.566 3.046 0 3.607 2.005 3.607 
+                4.614v5.585z" />
+            </svg>
+            </a>
+        </div>
+        </div>
+    </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-medium mb-4">EduPortfolio</h3>
+                    <p class="text-gray-400">
+                        Documenting professional growth through projects and knowledge sharing.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-medium mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#portfolio" class="text-gray-400 hover:text-white">Portfolio</a></li>
+                        <li><a href="#knowledge" class="text-gray-400 hover:text-white">Knowledge Base</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white">About</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-medium mb-4">Knowledge Areas</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Web Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Software Architecture</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Mobile Development</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Data Science</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-medium mb-4">Subscribe</h3>
+                    <p class="text-gray-400 mb-4">
+                        Sign up to receive updates on new projects and articles.
+                    </p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="py-2 px-3 rounded-l-md text-gray-900 w-full focus:outline-none">
+                        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 py-2 px-4 rounded-r-md whitespace-nowrap">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400">
+                <p>&copy; 2023 EduPortfolio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Tambahkan ini sebelum </body> -->
+    <script src="script.js"></script>
+</body>
+</html>
