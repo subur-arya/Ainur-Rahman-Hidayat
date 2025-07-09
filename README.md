@@ -1,1 +1,0 @@
-# Ainur-Rahman-Hidayat
