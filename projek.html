@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ainur Rahman Hidayat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="antialiased">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-md z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-xl font-bold text-indigo-600">Ainur Rahman Hidayat
+                        <span class="text-indigo-600 font-normal ml-1">| Projek</span>
+                    </span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-4">
+                        <a href="index.html" class="animated-underline px-3 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600">Beranda</a>
+                        <a href="projek.html" class="animated-underline px-3 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600">Projek</a>
+                        <a href="#knowledge" class="animated-underline px-3 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600">Knowledge Base</a>
+                        <a href="#about" class="animated-underline px-3 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600">About</a>
+                        <a href="#contact" class="ml-4 px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 transition-colors duration-200">Contact</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu, hidden by default -->
+        <div id="mobile-menu" class="hidden md:hidden shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Beranda</a>
+                <a href="projek.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Projek</a>
+                <a href="#knowledge" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Knowledge Base</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">About</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <section id="projek" class="py-20 projek-gradient">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <!-- bagian grid -->
+                <div class="card-hover bg-white rounded-xl overflow-hidden shadow-md border border-gray-100">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://placehold.co/600x400" alt="Dashboard application with analytics charts and user management interface in dark mode" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-indigo-600 bg-opacity-60 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="px-6 py-2 bg-white text-indigo-600 rounded-full font-semibold hover:bg-gray-100">View Details</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800">Analytics Dashboard</h3>
+                        <p class="mt-2 text-gray-600">
+                            Real-time data visualization platform with custom interactive charts.
+                        </p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs font-medium rounded-full">React</span>
+                            <span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs font-medium rounded-full">D3.js</span>
+                            <span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs font-medium rounded-full">Node.js</span>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="border-gray-900 text-center text-gray-100">
+                <p>&copy; ainurrahmanhdyt</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
