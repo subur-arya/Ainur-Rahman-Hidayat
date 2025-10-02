@@ -1,0 +1,3 @@
+sistem kontrol PID (Proportional Integral Derivative) merupakan salah satu algoritma kontrol yang cukup populer, Kontroler PID bekerja dengan mengukur error antara nilai yang diinginkan (setpoint) dengan nilai aktual dari sistem, kemudian menghasilkan sinyal kontrol untuk meminimalisir error tersebut.
+
+saya menggunakan sistem kontrol PID untuk mengontrol robot, namun kita perlu mengetahui konsep dasar PID dan  prinsip kerjanya, yang kemudian diterapkan untuk mengontrol robot. 

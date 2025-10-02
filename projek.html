@@ -10,25 +10,25 @@
 </head>
 <body class="antialiased">
     <!-- Navigation -->
-    <nav class="fixed w-full bg-white shadow-md z-50 transition-all duration-300">
+    <nav class="fixed w-full glass-effect z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex-shrink-0 flex items-center">
-                    <span class="text-xl font-bold text-indigo-600">Ainur Rahman Hidayat
-                        <span class="text-indigo-600 font-normal ml-1">| Projek</span>
+                    <span class="text-xl font-bold glow-text">Ainur Rahman Hidayat
+                        <span class="text-xl font-light glow-text">| Projek</span>
                     </span>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-center space-x-4">
-                        <a href="index.html" class="animated-underline px-3 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600">Beranda</a>
-                        <a href="projek.html" class="animated-underline px-3 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600">Projek</a>
-                        <a href="#knowledge" class="animated-underline px-3 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600">Knowledge Base</a>
-                        <a href="#about" class="animated-underline px-3 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600">About</a>
-                        <a href="#contact" class="ml-4 px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 transition-colors duration-200">Contact</a>
+                        <a href="index.html" class="animated-underline px-3 py-2 text-sm font-medium text-slate-300 hover:text-white">Beranda</a>
+                        <a href="projek.html" class="animated-underline px-3 py-2 text-sm font-medium text-slate-300 hover:text-white">Projek</a>
+                        <a href="#knowledge" class="animated-underline px-3 py-2 text-sm font-medium text-slate-300 hover:text-white">Knowledge Base</a>
+                        <a href="#about" class="animated-underline px-3 py-2 text-sm font-medium text-slate-300 hover:text-white">About</a>
+                        <a href="#contact" class="btn-primary ml-4 px-4 py-2 text-white text-sm font-medium rounded-lg">Contact</a>
                     </div>
                 </div>
                 <div class="-mr-2 flex md:hidden">
-                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white hover:bg-white hover:bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
                         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -51,46 +51,119 @@
     </nav>
 
 
-    <section id="projek" class="py-20 projek-gradient">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <!-- bagian grid -->
-                <div class="card-hover bg-white rounded-xl overflow-hidden shadow-md border border-gray-100">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://placehold.co/600x400" alt="Dashboard application with analytics charts and user management interface in dark mode" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-indigo-600 bg-opacity-60 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                            <a href="#" class="px-6 py-2 bg-white text-indigo-600 rounded-full font-semibold hover:bg-gray-100">View Details</a>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800">Analytics Dashboard</h3>
-                        <p class="mt-2 text-gray-600">
-                            Real-time data visualization platform with custom interactive charts.
-                        </p>
-                        <div class="mt-4 flex flex-wrap gap-2">
-                            <span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs font-medium rounded-full">React</span>
-                            <span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs font-medium rounded-full">D3.js</span>
-                            <span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs font-medium rounded-full">Node.js</span>
-                        </div>
-                    </div>
-                </div>
 
-                
+
+    <section id="projek" class="py-20 projek-gradient">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
+            <div id="projects-container" class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3"> 
             </div>
         </div>
     </section>
 
+    <script>
+    const projects = [
+        {
+        title: "Sistem Kontrol PID: Teori dan Simulasi",
+        description: "Belajar dasar Proportional-Integral-Derivative (PID) Controller beserta simulasi penerapannya untuk memahami perilaku sistem kontrol secara nyata.",
+        image: "./projek/projek_1/thumbnail.jpg",
+        link: "./projek/projek_1/projek.html",
+        tags: ["Kontrol Otomatis", "PID Controller", "Simulasi"],
+        color: "indigo"
+        },
+        {
+        title: "Food Delivery App",
+        description: "Mobile application connecting users with local restaurants and delivery services.",
+        image: "./projek/projek_2/thumbnail.jpg",
+        link: "./projek/projek_2/projek.html",
+        tags: ["Flutter", "Firebase", "Google Maps API"],
+        color: "emerald"
+        },
+        {
+        title: "E-Commerce Platform",
+        description: "Complete online shopping solution with inventory management and payment processing.",
+        image: "./projek/projek_3/thumbnail.jpg",
+        link: "./projek/projek_3/projek.html",
+        tags: ["Vue.js", "Laravel", "MySQL"],
+        color: "pink"
+        }
+    ];
+
+    const container = document.getElementById("projects-container");
+
+    projects.forEach(proj => {
+        const card = document.createElement("div");
+        card.className = "card-hover rounded-2xl overflow-hidden";
+
+        card.innerHTML = `
+        <div class="relative h-48 overflow-hidden">
+            <img src="${proj.image}" alt="${proj.title}" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-${proj.color}-600 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <a href="${proj.link}" class="px-6 py-2 glass-effect text-white rounded-full font-semibold hover:bg-white hover:bg-opacity-20">View Details</a>
+            </div>
+        </div>
+        <div class="p-6">
+            <h3 class="text-xl font-semibold text-white">${proj.title}</h3>
+            <p class="mt-2 text-slate-400">${proj.description}</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+            ${proj.tags.map(tag => `
+                <span class="px-3 py-1 bg-${proj.color}-500 bg-opacity-20 text-${proj.color}-300 text-xs font-medium rounded-full border border-${proj.color}-500 border-opacity-30">${tag}</span>
+            `).join("")}
+            </div>
+        </div>
+        `;
+
+        container.appendChild(card);
+    });
+    </script>
 
 
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div class="border-gray-900 text-center text-gray-100">
-                <p>&copy; ainurrahmanhdyt</p>
+
+
+    <!-- Footer - FIXED -->
+    <footer style="background-color: var(--dark-bg);" class="text-white border-t border-white border-opacity-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center">
+                <p class="text-slate-400 text-sm">&copy; 2024 Ainur Rahman Hidayat. All rights reserved.</p>
+                <p class="text-slate-500 text-xs mt-2">Built with passion and modern web technologies</p>
             </div>
         </div>
     </footer>
+
+    <!-- JavaScript for mobile menu and smooth scrolling -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+            } else {
+                nav.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+            }
+        });
+    </script>
 
 </body>
 </html>

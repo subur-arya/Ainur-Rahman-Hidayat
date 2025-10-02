@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistem Kontrol PID - Ainur Rahman Hidayat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+</head>
+<body class="antialiased">
+    <!-- Navigation -->
+    <nav class="fixed w-full glass-effect z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-xl font-bold glow-text">Ainur Rahman Hidayat
+                        <span class="text-xl font-light glow-text">| PID</span>
+                    </span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-4">
+                        <a href="../../index.html" class="animated-underline px-3 py-2 text-sm font-medium text-slate-300 hover:text-white">Beranda</a>
+                        <a href="../../projek.html" class="animated-underline px-3 py-2 text-sm font-medium text-slate-300 hover:text-white">Projek</a>
+                        <a href="../../index.html#knowledge" class="animated-underline px-3 py-2 text-sm font-medium text-slate-300 hover:text-white">Knowledge Base</a>
+                        <a href="../../index.html#about" class="animated-underline px-3 py-2 text-sm font-medium text-slate-300 hover:text-white">About</a>
+                        <a href="../../index.html#contact" class="btn-primary ml-4 px-4 py-2 text-white text-sm font-medium rounded-lg">Contact</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white hover:bg-white hover:bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden mobile-menu shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="../../index.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-white hover:bg-opacity-10">Beranda</a>
+                <a href="../../projek.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-white hover:bg-opacity-10">Projek</a>
+                <a href="../../index.html#knowledge" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-white hover:bg-opacity-10">Knowledge Base</a>
+                <a href="../../index.html#about" class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-white hover:bg-opacity-10">About</a>
+                <a href="../../index.html#contact" class="block px-3 py-2 rounded-md text-base font-medium btn-primary text-white">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="judul" class="pt-32 pb-20 hero-gradient text-white relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center">
+                <h1 class="text-5xl font-bold glow-text mb-6">
+                    Sistem Kontrol PID
+                </h1>
+                <p class="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
+                    Proportional-Integral-Derivative Control System
+                </p>
+                <div class="flex justify-center">
+                    <div class="glass-effect px-6 py-3 rounded-lg">
+                        <p class="text-sm text-slate-400">Dipelajari pada: <span class="text-indigo-300">Sistem Kontrol</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Table of Contents -->
+    <section class="py-12 section-dark">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="knowledge-card indigo p-6 rounded-2xl">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center">
+                    <svg class="h-6 w-6 text-indigo-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    Daftar Isi
+                </h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="space-y-3">
+                        <a href="#pendahuluan" class="block text-indigo-300 hover:text-indigo-200 transition-colors">1. Pendahuluan</a>
+                        <a href="#komponen-pid" class="block text-indigo-300 hover:text-indigo-200 transition-colors">2. Komponen PID</a>
+                        <a href="#Diagram PID" class="block text-indigo-300 hover:text-indigo-200 transition-colors">3. Rumus Matematika</a>
+                        <a href="#karakteristik" class="block text-indigo-300 hover:text-indigo-200 transition-colors">4. Karakteristik Respon</a>
+                    </div>
+                    <div class="space-y-3">
+                        <a href="#tuning" class="block text-indigo-300 hover:text-indigo-200 transition-colors">5. Metode Tuning</a>
+                        <a href="#aplikasi" class="block text-indigo-300 hover:text-indigo-200 transition-colors">6. Aplikasi Praktis</a>
+                        <a href="#keuntungan" class="block text-indigo-300 hover:text-indigo-200 transition-colors">7. Keuntungan & Kerugian</a>
+                        <a href="#kesimpulan" class="block text-indigo-300 hover:text-indigo-200 transition-colors">8. Kesimpulan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pendahuluan -->
+    <section id="pendahuluan" class="py-16" style="background-color: var(--dark-bg);">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white mb-8 glow-text">PID (Proportional Integral Derivative)</h2>
+            
+            <div class="card-hover p-8 rounded-2xl mb-8">
+                <p class="text-slate-300 text-lg leading-relaxed mb-6">
+                    <b>PID (Proportional Integral Derivative)</b> adalah salah satu metode kontrol yang paling sering dipakai. Cara kerjanya cukup sederhana: PID menghitung selisih (error) antara nilai yang kita inginkan (setpoint) dengan kondisi nyata dari sistem, lalu menghasilkan sinyal kontrol untuk mengurangi selisih tersebut.
+                </p>
+                <p class="text-slate-300 text-lg leading-relaxed mb-6">
+                    Dalam kasus ini, PID digunakan untuk mengendalikan robot. Ide dasarnya adalah dengan memanfaatkan sistem koordinat kartesius (sumbu x dan y) sebagai acuan gerak. Dengan pendekatan ini, robot dapat diarahkan secara teratur untuk bergerak menuju titik tujuan tertentu (setpoint) sesuai koordinat yang ditentukan. Namun, sebelum masuk ke penerapannya dalam robot, penting untuk memahami lebih dulu konsep dasar serta prinsip kerja PID agar penggunaannya bisa optimal.
+                </p>
+                <div class="glass-effect p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold text-white mb-4">Mengapa PID Penting?</h3>
+                    <ul class="space-y-3 text-slate-300">
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-indigo-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span>Mudah dipahami serta mudah diimplementasikan</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-indigo-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span>Memberikan kontrol yang stabil pada berbagai sistem</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-indigo-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span>Dapat disesuaikan untuk beragam aplikasi, termasuk industri dan robotika</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-indigo-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span>Memiliki respons yang cepat dan akurat terhadap perubahan kondisi sistem</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Diagram PID -->
+    <section id="Diagram PID" class="py-16 section-dark">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white mb-8 glow-text">Diagram PID</h2>
+            
+            <div class="card-hover p-8 rounded-2xl mb-8">
+                <div class="flex justify-center mb-6">
+                    <img src="gambar 1.jpg" alt="Diagram Blok PID" class="rounded-xl shadow-lg max-h-64">
+                </div>
+
+                <h3 class="text-2xl font-semibold text-white mb-6">Persamaan Dasar</h3>
+                
+                <div class="glass-effect p-6 rounded-xl mb-6 text-center">
+                    <p class="text-white text-lg mb-4">Output Kontroler PID:</p>
+                    <div class="text-2xl text-indigo-300 font-mono">
+                        u(t) = K<sub>p</sub>e(t) + K<sub>i</sub>∫e(t)dt + K<sub>d</sub>(de(t)/dt)
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-semibold text-white">Dimana:</h4>
+                        <div class="space-y-2 text-slate-300">
+                            <p><span class="text-indigo-300 font-mono">u(t)</span> = Output kontroler</p>
+                            <p><span class="text-indigo-300 font-mono">e(t)</span> = Error (setpoint - measurement)</p>
+                            <p><span class="text-indigo-300 font-mono">K<sub>p</sub></span> = Gain Proportional</p>
+                            <p><span class="text-indigo-300 font-mono">K<sub>i</sub></span> = Gain Integral</p>
+                            <p><span class="text-indigo-300 font-mono">K<sub>d</sub></span> = Gain Derivative</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-semibold text-white">Bentuk Diskrit:</h4>
+                        <div class="glass-effect p-4 rounded-lg">
+                            <div class="text-indigo-300 font-mono text-sm">
+                                u[n] = K<sub>p</sub>e[n] + K<sub>i</sub>∑e[k] + K<sub>d</sub>(e[n] - e[n-1])
+                            </div>
+                        </div>
+                        <p class="text-slate-400 text-sm">
+                            Bentuk diskrit digunakan untuk implementasi digital dalam mikroprosesor atau komputer.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Komponen PID -->
+    <section id="komponen-pid" class="py-16 section-dark" style="background-color: var(--dark-bg);">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white mb-8 glow-text">Komponen PID</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <!-- Proportional -->
+                <div class="knowledge-card indigo p-6 rounded-2xl">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-indigo-500 bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl font-bold text-indigo-300">P</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white">Proportional</h3>
+                    </div>
+                    <p class="text-slate-400 text-sm text-center">
+                        Memberikan output yang sebanding dengan besarnya error saat ini. Semakin besar error, semakin besar pula output kontrolnya.
+                    </p>
+                </div>
+
+                <!-- Integral -->
+                <div class="knowledge-card emerald p-6 rounded-2xl">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-emerald-500 bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl font-bold text-emerald-300">I</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white">Integral</h3>
+                    </div>
+                    <p class="text-slate-400 text-sm text-center">
+                        Mengintegrasikan error dari waktu ke waktu untuk menghilangkan steady-state error dan meningkatkan akurasi sistem.
+                    </p>
+                </div>
+
+                <!-- Derivative -->
+                <div class="knowledge-card pink p-6 rounded-2xl">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-pink-500 bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl font-bold text-pink-300">D</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white">Derivative</h3>
+                    </div>
+                    <p class="text-slate-400 text-sm text-center">
+                        Memprediksi trend error masa depan berdasarkan laju perubahan error, membantu mengurangi overshoot.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulasi PID -->
+    <section id="simulasi" class="py-16 section-dark">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white mb-8 glow-text">Simulasi</h2>
+            
+            <!-- Sub-bab Penjelasan -->
+            <div class="card-hover p-8 rounded-2xl mb-8">
+                <!-- <h3 class="text-2xl font-semibold text-white mb-6">Memahami PID Melalui Simulasi</h3> -->
+                <p class="text-slate-300 text-lg leading-relaxed mb-6">
+                    Cara paling gampang untuk benar-benar paham tentang PID adalah dengan coba simulasi. Lewat simulasi, kita bisa lihat gimana kontroler PID bereaksi saat ada error, lalu ngatur sinyal kontrol supaya sistem jadi lebih stabil. Dengan begitu, konsep PID yang kelihatan rumit bisa lebih mudah dipahami karena kita bisa lihat langsung efeknya.
+                </p>
+            </div>
+
+
+            <!-- Simulation Selector -->
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold text-white mb-6">Jenis Simulasi PID</h3>
+                <div class="flex flex-wrap gap-4 justify-center mb-8">
+                    <button id="sim-p" class="simulation-btn px-6 py-3 rounded-lg font-semibold transition-all duration-300 bg-indigo-500 bg-opacity-20 text-indigo-300 border border-indigo-500 border-opacity-30 hover:bg-opacity-30 focus:ring-2 focus:ring-indigo-500">
+                        Simulasi P
+                    </button>
+                    <button id="sim-pd" class="simulation-btn px-6 py-3 rounded-lg font-semibold transition-all duration-300 bg-pink-500 bg-opacity-20 text-pink-300 border border-pink-500 border-opacity-30 hover:bg-opacity-30 focus:ring-2 focus:ring-pink-500">
+                        Simulasi PD
+                    </button>
+                    <button id="sim-pid" class="simulation-btn px-6 py-3 rounded-lg font-semibold transition-all duration-300 bg-emerald-500 bg-opacity-20 text-emerald-300 border border-emerald-500 border-opacity-30 hover:bg-opacity-30 focus:ring-2 focus:ring-emerald-500">
+                        Simulasi PID
+                    </button>
+                </div>
+            </div>
+
+            <!-- Individual Simulations -->
+            <div id="individual-simulations">
+                <!-- P-Only Simulation -->
+                <div id="p-simulation" class="simulation-content card-hover p-8 rounded-2xl mb-6" style="display: block;">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-indigo-500 bg-opacity-20 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-2xl font-bold text-indigo-300">P</span>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-white">Kontrol Proportional</h4>
+                        </div>
+                    </div>
+                    
+                    <div class="grid lg:grid-cols-2 gap-6">
+                        <!-- Simulation Display -->
+                        <div class="bg-black rounded-xl p-4">
+                            <video 
+                                autoplay 
+                                muted 
+                                loop 
+                                playsinline
+                                id="p-video"
+                                class="w-full aspect-video rounded-lg"
+                                controls
+                                preload="metadata"
+                                poster="gambar 2.jpg"
+                            
+                                <source src="video 1.mp4" type="video/mp4">
+                                <!-- <source src="path/to/your/p-controller-simulation.webm" type="video/webm"> -->
+                                
+                                <!-- Fallback -->
+                                <div class="aspect-video glass-effect rounded-lg flex items-center justify-center">
+                                    <div class="text-center">
+                                        <div class="w-16 h-16 bg-indigo-500 bg-opacity-30 rounded-full flex items-center justify-center mx-auto mb-3">
+                                            <svg class="h-8 w-8 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                            </svg>
+                                        </div>
+                                        <p class="text-indigo-300 font-semibold">P-Controller Response</p>
+                                        <p class="text-slate-400 text-sm mt-1">Video tidak dapat dimuat</p>
+                                    </div>
+                                </div>
+                            </video>
+                        </div>
+                        
+                        <!-- Characteristics -->
+                        <div class="space-y-4">
+                            <h5 class="text-lg font-semibold text-white">Karakteristik P-Controller:</h5>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <div class="w-3 h-3 bg-green-400 rounded-full mr-3"></div>
+                                    <span class="text-slate-300">Rise time cepat</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-3 h-3 bg-green-400 rounded-full mr-3"></div>
+                                    <span class="text-slate-300">Respons segera terhadap error</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-3 h-3 bg-red-400 rounded-full mr-3"></div>
+                                    <span class="text-slate-300">Steady-state error persisten</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-3 h-3 bg-red-400 rounded-full mr-3"></div>
+                                    <span class="text-slate-300">Tidak dapat mencapai setpoint</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-effect p-4 rounded-lg mt-4">
+                        <p class="text-slate-300 text-sm">
+                            <strong>simulasi pertama:</strong> kontrol P cukup untuk membuat benda bergerak ke posisi yang dituju (setpoint) dengan lancar.
+                        </p>
+                        <p class="text-slate-300 text-sm">
+                            <strong>simulasi kedua:</strong> kontrol P membuat benda mengalami overshot dan steady-state error yang cukup parah, sehingga membutuhkan waktu untuk mencapai posisi yang dituju (setpoint).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- PD Simulation -->
+                <div id="pd-simulation" class="simulation-content card-hover p-8 rounded-2xl mb-6" style="display: none;">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-pink-500 bg-opacity-20 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-2xl font-bold text-pink-300">PD</span>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-white">Kontrol Proportional Derivative</h4>
+                        </div>
+                    </div>
+                    
+                    <div class="grid lg:grid-cols-2 gap-6">
+                        <div class="bg-black rounded-xl p-4">
+                            <video 
+                                id="pd-video"
+                                class="w-full aspect-video rounded-lg"
+                                controls
+                                preload="metadata"
+                                poster="gambar 3.jpg"
+                            
+                                <source src="video 2.mp4" type="video/mp4">
+                                <!-- <source src="path/to/your/d-controller-simulation.webm" type="video/webm"> -->
+                                
+                                <!-- Fallback -->
+                                <div class="aspect-video glass-effect rounded-lg flex items-center justify-center">
+                                    <div class="text-center">
+                                        <div class="w-16 h-16 bg-pink-500 bg-opacity-30 rounded-full flex items-center justify-center mx-auto mb-3">
+                                            <svg class="h-8 w-8 text-pink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                            </svg>
+                                        </div>
+                                        <p class="text-pink-300 font-semibold">PD-Controller Response</p>
+                                        <p class="text-slate-400 text-sm mt-1">Video tidak dapat dimuat</p>
+                                    </div>
+                                </div>
+                            </video>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <h5 class="text-lg font-semibold text-white">Karakteristik D-Controller:</h5>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <div class="w-3 h-3 bg-green-400 rounded-full mr-3"></div>
+                                    <span class="text-slate-300">Prediksi perubahan error</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-3 h-3 bg-green-400 rounded-full mr-3"></div>
+                                    <span class="text-slate-300">Mengurangi overshoot</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-3 h-3 bg-red-400 rounded-full mr-3"></div>
+                                    <span class="text-slate-300">Tidak dapat mengeliminasi error</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-3 h-3 bg-red-400 rounded-full mr-3"></div>
+                                    <span class="text-slate-300">Sensitif terhadap noise</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-effect p-4 rounded-lg mt-4">
+                        <p class="text-slate-300 text-sm">
+                            <strong>simulasi pertama:</strong> benda berhasil bergerak ke posisi yang dituju (setpoint) dengan pengereman overshoot, sehingga pergerakan benda stabil
+                        </p>
+                        <p class="text-slate-300 text-sm">
+                            <strong>simulasi kedua:</strong> karena benda melakukan pengerman yang berlebihan untuk menghindari overshoot, maka terjadi error terhadap posisi yang dituju (setpoint) yang cukup, menyebabkan benda kurang stabil
+                        </p>
+                    </div>
+                </div>
+
+                <!-- PID-Only Simulation -->
+                <div id="pid-simulation" class="simulation-content card-hover p-8 rounded-2xl mb-6" style="display: none;">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-emerald-500 bg-opacity-20 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-2xl font-bold text-emerald-300">PID</span>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-white">Kontrol Proportional Integral Derivative</h4>
+                        </div>
+                    </div>
+                    
+                    <div class="grid lg:grid-cols-2 gap-6">
+                        <div class="bg-black rounded-xl p-4">
+                            <video 
+                                id="i-video"
+                                class="w-full aspect-video rounded-lg"
+                                controls
+                                preload="metadata"
+                                poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%2310b981' opacity='0.1'/%3E%3Cg fill='%2310b981' opacity='0.3'%3E%3Ctext x='320' y='180' text-anchor='middle' font-size='24' font-family='Inter'%3EI-Controller%3C/text%3E%3C/g%3E%3C/svg%3E"
+                            
+                                <source src="video 3.mp4" type="video/mp4">
+                                <!-- <source src="path/to/your/i-controller-simulation.webm" type="video/webm"> -->
+                                
+                                <!-- Fallback -->
+                                <div class="aspect-video glass-effect rounded-lg flex items-center justify-center">
+                                    <div class="text-center">
+                                        <div class="w-16 h-16 bg-emerald-500 bg-opacity-30 rounded-full flex items-center justify-center mx-auto mb-3">
+                                            <svg class="h-8 w-8 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18"></path>
+                                            </svg>
+                                        </div>
+                                        <p class="text-emerald-300 font-semibold">PID-Controller Response</p>
+                                        <p class="text-slate-400 text-sm mt-1">Video tidak dapat dimuat</p>
+                                    </div>
+                                </div>
+                            </video>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <h5 class="text-lg font-semibold text-white">Karakteristik I-Controller:</h5>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <div class="w-3 h-3 bg-green-400 rounded-full mr-3"></div>
+                                    <span class="text-slate-300">Eliminasi steady-state error</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-3 h-3 bg-green-400 rounded-full mr-3"></div>
+                                    <span class="text-slate-300">Mencapai setpoint secara tepat</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-3 h-3 bg-red-400 rounded-full mr-3"></div>
+                                    <span class="text-slate-300">Respons sangat lambat</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-3 h-3 bg-red-400 rounded-full mr-3"></div>
+                                    <span class="text-slate-300">Dapat menyebabkan overshoot besar</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-effect p-4 rounded-lg mt-4">
+                        <p class="text-slate-300 text-sm">
+                            <strong>Pengamatan:</strong> dengan tergabungngnya sistem PID (Proportional Integral Deravative), benda dapat terkontrol dengan baik ke posisi yang dituju (setpoin), tentunya juga dengan variabel Kp, Ki dan Kd yang seuai.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Metode Tuning -->
+    <section id="tuning" class="py-16" style="background-color: var(--dark-bg);">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white mb-8 glow-text">Metode Tuning</h2>
+
+                <!-- Trial and Error -->
+                <div class="card-hover p-8 rounded-2xl">
+                    <h3 class="text-2xl font-semibold text-white mb-4">Metode Manual (Trial & Error)</h3>
+                    
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-indigo-500 bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <span class="text-indigo-300 font-bold">1</span>
+                            </div>
+                            <h4 class="text-white font-semibold mb-2">Atur Kp</h4>
+                            <p class="text-slate-400 text-sm">Mulai dengan Ki=0, Kd=0. Naikkan Kp hingga respon cepat tapi stabil</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-pink-500 bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <span class="text-pink-300 font-bold">2</span>
+                            </div>
+                            <h4 class="text-white font-semibold mb-2">Tambah Kd</h4>
+                            <p class="text-slate-400 text-sm">Naikkan Kd pelan-pelan untuk mengurangi overshoot</p>
+                        </div>
+
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-emerald-500 bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <span class="text-emerald-300 font-bold">3</span>
+                            </div>
+                            <h4 class="text-white font-semibold mb-2">Fine-tune Ki</h4>
+                            <p class="text-slate-400 text-sm">Tambahkan Ki pelan-pelan untuk menghilangkan steady-state error</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="simulasi pid pada sistem koordinat kartesius"  class="py-16 section-dark">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Video Simulasi Utama -->
+            <div class="card-hover p-8 rounded-2xl mb-8">
+                <h3 class="text-2xl font-semibold text-white mb-6">Simulasi PID pada Sistem Koordinat Kartesius</h3>
+                <p class="text-slate-300 mb-6">
+                    Melalui simulasi ini, dapat terlihat bagaimana robot bergerak menuju titik tujuan tertentu di sumbu x dan y dengan bantuan pengendalian PID.
+                </p>
+                
+                <!-- Video Container -->
+                <div class="relative bg-black rounded-xl overflow-hidden mb-4">
+                    <video 
+                        id="pid-main-video"
+                        class="w-full aspect-video rounded-xl"
+                        controls
+                        preload="metadata"
+                        poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'%3E%3Crect width='1280' height='720' fill='%23252650'/%3E%3Cg fill='%23ffffff' opacity='0.1'%3E%3Ctext x='640' y='360' text-anchor='middle' font-size='48' font-family='Inter'%3EPID Simulation%3C/text%3E%3C/g%3E%3C/svg%3E"
+                    >
+                        <source src="path/to/your/pid-simulation.mp4" type="video/mp4">
+                        <source src="path/to/your/pid-simulation.webm" type="video/webm">
+                        
+                        <!-- Fallback content -->
+                        <div class="aspect-video flex items-center justify-center glass-effect">
+                            <div class="text-center">
+                                <div class="w-20 h-20 bg-indigo-500 bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <svg class="h-10 w-10 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M12 5v.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <p class="text-white text-lg font-semibold mb-2">Video tidak dapat dimuat</p>
+                                <p class="text-slate-400 text-sm">Browser Anda tidak mendukung format video ini</p>
+                            </div>
+                        </div>
+                    </video>
+                </div>
+                
+                <!-- Video Controls & Info -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="glass-effect p-4 rounded-xl">
+                        <h4 class="text-white font-semibold mb-2">Parameter Simulasi:</h4>
+                        <div class="grid grid-cols-3 gap-4 text-sm">
+                            <div class="text-center">
+                                <div class="text-indigo-300 font-mono text-lg">Kp</div>
+                                <div class="text-slate-400">2.5</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-emerald-300 font-mono text-lg">Ki</div>
+                                <div class="text-slate-400">1.2</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-pink-300 font-mono text-lg">Kd</div>
+                                <div class="text-slate-400">0.8</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-effect p-4 rounded-xl">
+                        <h4 class="text-white font-semibold mb-2">Video Information:</h4>
+                        <div class="space-y-1 text-sm text-slate-400">
+                            <div class="flex justify-between">
+                                <span>Type:</span>
+                                <span class="text-slate-300">Step Response Analysis</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>System:</span>
+                                <span class="text-slate-300">Second Order</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Quality:</span>
+                                <span class="text-slate-300">HD 1080p</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video Description -->
+                <div class="mt-4 glass-effect p-4 rounded-xl">
+                    <h4 class="text-white font-semibold mb-2">Yang akan Anda lihat:</h4>
+                    <ul class="space-y-2 text-slate-300 text-sm">
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-indigo-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span>Respons sistem terhadap step input dengan parameter PID optimal</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-emerald-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span>Grafik real-time error, output kontroler, dan respons plant</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span>Analisis karakteristik: rise time, overshoot, settling time</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Aplikasi -->
+    <section id="aplikasi" class="py-16" style="background-color: var(--dark-bg);">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white mb-8 glow-text">Aplikasi PID</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="knowledge-card indigo p-6 rounded-2xl">
+                    <h3 class="text-xl font-semibold text-white mb-4">Industri Proses</h3>
+                    <ul class="space-y-2 text-slate-300">
+                        <li>• Kontrol temperatur dalam reaktor kimia</li>
+                        <li>• Pengaturan pH dalam sistem pengolahan air</li>
+                        <li>• Kontrol tekanan dalam sistem pneumatik</li>
+                        <li>• Pengaturan level cairan dalam tangki</li>
+                    </ul>
+                </div>
+
+                <div class="knowledge-card emerald p-6 rounded-2xl">
+                    <h3 class="text-xl font-semibold text-white mb-4">Otomotif</h3>
+                    <ul class="space-y-2 text-slate-300">
+                        <li>• Cruise control system</li>
+                        <li>• Engine speed control</li>
+                        <li>• Anti-lock braking system (ABS)</li>
+                        <li>• Electronic stability control</li>
+                    </ul>
+                </div>
+
+                <div class="knowledge-card pink p-6 rounded-2xl">
+                    <h3 class="text-xl font-semibold text-white mb-4">Robotika</h3>
+                    <ul class="space-y-2 text-slate-300">
+                        <li>• Kontrol posisi servo motor</li>
+                        <li>• Stabilisasi drone/quadcopter</li>
+                        <li>• Line following robot</li>
+                        <li>• Balancing robot</li>
+                    </ul>
+                </div>
+
+                <div class="knowledge-card blue p-6 rounded-2xl">
+                    <h3 class="text-xl font-semibold text-white mb-4">HVAC System</h3>
+                    <ul class="space-y-2 text-slate-300">
+                        <li>• Kontrol temperatur ruangan</li>
+                        <li>• Pengaturan kelembaban udara</li>
+                        <li>• Kontrol kecepatan fan</li>
+                        <li>• Sistem ventilasi otomatis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Keuntungan & Kerugian -->
+    <section id="keuntungan"  class="py-16 section-dark">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white mb-8 glow-text">Keuntungan & Kerugian</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Keuntungan -->
+                <div class="card-hover p-8 rounded-2xl">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-green-500 bg-opacity-20 rounded-full flex items-center justify-center mr-4">
+                            <svg class="h-6 w-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-white">Keuntungan</h3>
+                    </div>
+                    
+                    <ul class="space-y-4 text-slate-300">
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-green-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span><strong class="text-white">Mudah dipahami:</strong> Konsep matematis yang sederhana dan intuitif</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-green-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span><strong class="text-white">Fleksibel:</strong> Dapat diterapkan pada berbagai jenis sistem</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-green-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span><strong class="text-white">Stabil:</strong> Memberikan kontrol yang robust untuk sistem linear</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-green-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span><strong class="text-white">Teruji:</strong> Telah digunakan secara luas di industri selama puluhan tahun</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-green-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span><strong class="text-white">Ekonomis:</strong> Implementasi yang relatif murah dan sederhana</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Kerugian -->
+                <div class="card-hover p-8 rounded-2xl">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-red-500 bg-opacity-20 rounded-full flex items-center justify-center mr-4">
+                            <svg class="h-6 w-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-white">Kerugian</h3>
+                    </div>
+                    
+                    <ul class="space-y-4 text-slate-300">
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-red-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span><strong class="text-white">Tuning manual:</strong> Membutuhkan waktu dan pengalaman untuk mendapatkan parameter optimal</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-red-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span><strong class="text-white">Sensitif noise:</strong> Komponen derivative mudah terpengaruh oleh gangguan</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-red-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span><strong class="text-white">Windup integral:</strong> Dapat terjadi saturasi pada aksi integral</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-red-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span><strong class="text-white">Sistem nonlinear:</strong> Performa terbatas pada sistem yang sangat nonlinear</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-2 h-2 bg-red-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <span><strong class="text-white">Parameter tetap:</strong> Tidak dapat beradaptasi dengan perubahan sistem</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources & Links -->
+    <section id="resources" class="py-16" style="background-color: var(--dark-bg);">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-indigo-500 bg-opacity-20 rounded-full flex items-center justify-center mr-4">
+                    <svg class="h-6 w-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                    </svg>
+                </div>
+                <h2 class="text-3xl font-semibold text-white">Source Code</h2>
+            </div>
+            
+            <div class="grid gap-6">
+                <!-- Source Code Section -->
+                <div class="card-hover p-8 rounded-2xl">
+                    <p class="text-slate-300 mb-6">
+                        Akses source code lengkap dari simulasi dan implementasi PID yang digunakan dalam materi ini:
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <a href="https://github.com/yourusername/pid-simulation" target="_blank" rel="noopener noreferrer" 
+                           class="glass-effect p-4 rounded-xl hover:bg-white hover:bg-opacity-20 transition-all group">
+                            <div class="flex items-center">
+                                <svg class="h-8 w-8 text-gray-300 mr-3 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                <div>
+                                    <h4 class="text-white font-semibold group-hover:text-white">Simulasi PID</h4>
+                                    <p class="text-slate-400 text-sm">kode simulasi PID dasar</p>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://github.com/yourusername/arduino-pid-robot" target="_blank" rel="noopener noreferrer"
+                           class="glass-effect p-4 rounded-xl hover:bg-white hover:bg-opacity-20 transition-all group">
+                            <div class="flex items-center">
+                                <svg class="h-8 w-8 text-gray-300 mr-3 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                <div>
+                                    <h4 class="text-white font-semibold">Simulasi PID koordinat robot</h4>
+                                    <p class="text-slate-400 text-sm">Implementasi simulasi PID pada robot</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kesimpulan -->
+    <section id="kesimpulan" class="py-16 section-dark">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white mb-8 glow-text">Kesimpulan</h2>
+            
+            <div class="card-hover p-8 rounded-2xl">
+                <div class="text-center mb-8">
+                    <div class="w-20 h-20 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="h-10 w-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="prose prose-invert max-w-none">
+                    <p class="text-lg text-slate-300 leading-relaxed mb-6">
+                        Sistem kontrol PID merupakan salah satu algoritma kontrol yang paling fundamental dan banyak digunakan dalam dunia engineering. Meskipun konsepnya sederhana, PID controller mampu memberikan performa yang memuaskan untuk berbagai aplikasi industri.
+                    </p>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 my-8">
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-indigo-400 mb-2">3</div>
+                            <p class="text-slate-400">Komponen Utama</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-emerald-400 mb-2">∞</div>
+                            <p class="text-slate-400">Aplikasi Praktis</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-pink-400 mb-2">70+</div>
+                            <p class="text-slate-400">Tahun Penggunaan</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-slate-300 leading-relaxed mb-6">
+                        Pemahaman yang baik tentang karakteristik masing-masing komponen (P, I, D) dan metode tuning yang tepat akan membantu engineer dalam mengimplementasikan sistem kontrol yang efektif. Meskipun memiliki beberapa keterbatasan, PID controller tetap menjadi pilihan utama karena kesederhanaan, keandalan, dan efektivitasnya.
+                    </p>
+                    
+                    <div class="glass-effect p-6 rounded-xl">
+                        <h3 class="text-xl font-semibold text-white mb-4">Key Takeaways:</h3>
+                        <ul class="space-y-2 text-slate-300">
+                            <li>• PID adalah kombinasi optimal antara kesederhanaan dan efektivitas</li>
+                            <li>• Tuning yang tepat adalah kunci keberhasilan implementasi PID</li>
+                            <li>• Memahami trade-off antar komponen sangat penting dalam desain</li>
+                            <li>• PID cocok untuk sistem linear dengan karakteristik yang stabil</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Bottom -->
+    <section class="py-12" style="background-color: var(--dark-bg);">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <a href="../../projek.html" class="glass-effect px-6 py-3 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all text-slate-300 hover:text-white">
+                    <svg class="h-5 w-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Kembali ke Projects
+                </a>
+                
+                <div class="text-center">
+                    <p class="text-slate-400 text-sm">Bagikan artikel ini:</p>
+                    <div class="flex space-x-3 mt-2">
+                        <button class="w-8 h-8 bg-blue-600 bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all">
+                            <svg class="h-4 w-4 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </button>
+                        <button class="w-8 h-8 bg-blue-800 bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all">
+                            <svg class="h-4 w-4 text-blue-300" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </button>
+                        <button class="w-8 h-8 bg-green-600 bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-all">
+                            <svg class="h-4 w-4 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.085"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="text-right">
+                    <p class="text-slate-400 text-sm">Terakhir diupdate:</p>
+                    <p class="text-slate-300 text-sm">19 September 2024</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - FIXED -->
+    <footer style="background-color: var(--dark-bg);" class="text-white border-t border-white border-opacity-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center">
+                <p class="text-slate-400 text-sm">&copy; 2024 Ainur Rahman Hidayat. All rights reserved.</p>
+                <p class="text-slate-500 text-xs mt-2">Built with passion and modern web technologies</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for mobile menu and smooth scrolling -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+            } else {
+                nav.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+            }
+        });
+
+        // Progress indicator
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            
+            if (!document.querySelector('.progress-bar')) {
+                const progressBar = document.createElement('div');
+                progressBar.className = 'progress-bar fixed top-0 left-0 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 z-50 transition-all duration-300';
+                progressBar.style.width = scrolled + '%';
+                document.body.appendChild(progressBar);
+            } else {
+                document.querySelector('.progress-bar').style.width = scrolled + '%';
+            }
+        });
+
+        // Simulation switching functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const simButtons = document.querySelectorAll('.simulation-btn');
+            const simContents = document.querySelectorAll('.simulation-content');
+            
+            // Function to show specific simulation
+            function showSimulation(targetId) {
+                // Hide all simulations
+                simContents.forEach(content => {
+                    content.style.display = 'none';
+                });
+                
+                // Remove active class from all buttons
+                simButtons.forEach(btn => {
+                    btn.classList.remove('active-sim');
+                });
+                
+                // Show target simulation
+                const targetSim = document.getElementById(targetId);
+                if (targetSim) {
+                    targetSim.style.display = 'block';
+                }
+            }
+            
+            // Add click handlers to simulation buttons
+            document.getElementById('sim-p').addEventListener('click', function() {
+                showSimulation('p-simulation');
+                this.classList.add('active-sim');
+            });
+            
+            document.getElementById('sim-i').addEventListener('click', function() {
+                showSimulation('i-simulation');
+                this.classList.add('active-sim');
+            });
+            
+            document.getElementById('sim-d').addEventListener('click', function() {
+                showSimulation('d-simulation');
+                this.classList.add('active-sim');
+            });
+            
+            // Set initial state
+            document.getElementById('sim-p').classList.add('active-sim');
+        });
+
+        // Table of contents update with simulation
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('a[href^="#"]');
+            const sections = document.querySelectorAll('section[id]');
+            
+            // Update table of contents to include simulation
+            const tocContainer = document.querySelector('.grid.md\\:grid-cols-2.gap-4');
+            if (tocContainer) {
+                const simulationLink = document.createElement('a');
+                simulationLink.href = '#simulasi';
+                simulationLink.className = 'block text-indigo-300 hover:text-indigo-200 transition-colors';
+                simulationLink.textContent = '5. Simulasi Interaktif';
+                
+                // Update existing links numbering
+                const existingLinks = tocContainer.querySelectorAll('a');
+                existingLinks.forEach((link, index) => {
+                    if (index >= 4) { // Update from "5. Metode Tuning" onwards
+                        const text = link.textContent;
+                        const newNumber = parseInt(text.split('.')[0]) + 1;
+                        link.textContent = text.replace(/^\d+\./, `${newNumber}.`);
+                    }
+                });
+                
+                // Insert simulation link at appropriate position
+                const firstColumn = tocContainer.firstElementChild;
+                firstColumn.appendChild(simulationLink);
+            }
+        });
+    </script>
+    
+    <style>
+        .active-sim {
+            background-color: rgba(99, 102, 241, 0.4) !important;
+            border-color: rgba(99, 102, 241, 0.6) !important;
+            transform: scale(1.05);
+        }
+        
+        .simulation-content {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Video hover effects */
+        .aspect-video:hover .text-center {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+        
+        /* Enhanced button animations */
+        .simulation-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .simulation-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .simulation-btn:hover::before {
+            left: 100%;
+        }
+    </style>
+</body>
+</html>
