@@ -11,7 +11,7 @@
 <body class="antialiased">
     <!-- Navigation -->
     <nav class="fixed w-full glass-effect z-50 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex-shrink-0 flex items-center">
                     <span class="text-xl font-bold glow-text">Ainur Rahman Hidayat
@@ -50,12 +50,73 @@
         </div>
     </nav>
 
-
-
-
     <section id="projek" class="py-20 projek-gradient">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
-            <div id="projects-container" class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3"> 
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Sidebar Kategori -->
+                <aside class="lg:w-72 flex-shrink-0">
+                    <div class="lg:sticky lg:top-24">
+                        <div class="glass-effect rounded-2xl p-6 border border-white border-opacity-10">
+                            <h3 class="text-xl font-bold text-white mb-6 glow-text">Kategori Projek</h3>
+                            <div class="space-y-2" id="category-filter">
+                                <button class="category-btn active w-full text-left px-4 py-3 rounded-lg transition-all duration-300" data-category="all">
+                                    <span class="flex items-center justify-between">
+                                        <span class="font-medium">Semua Projek</span>
+                                        <span class="category-count text-xs">0</span>
+                                    </span>
+                                </button>
+                                <button class="category-btn w-full text-left px-4 py-3 rounded-lg transition-all duration-300" data-category="pemrograman">
+                                    <span class="flex items-center justify-between">
+                                        <span class="font-medium">💻 Pemrograman</span>
+                                        <span class="category-count text-xs">0</span>
+                                    </span>
+                                </button>
+                                <button class="category-btn w-full text-left px-4 py-3 rounded-lg transition-all duration-300" data-category="robotik">
+                                    <span class="flex items-center justify-between">
+                                        <span class="font-medium">🤖 Robotik</span>
+                                        <span class="category-count text-xs">0</span>
+                                    </span>
+                                </button>
+                                <button class="category-btn w-full text-left px-4 py-3 rounded-lg transition-all duration-300" data-category="matematika">
+                                    <span class="flex items-center justify-between">
+                                        <span class="font-medium">📐 Matematika</span>
+                                        <span class="category-count text-xs">0</span>
+                                    </span>
+                                </button>
+                                <button class="category-btn w-full text-left px-4 py-3 rounded-lg transition-all duration-300" data-category="kontrol">
+                                    <span class="flex items-center justify-between">
+                                        <span class="font-medium">⚙️ Kontrol Otomatis</span>
+                                        <span class="category-count text-xs">0</span>
+                                    </span>
+                                </button>
+                                <button class="category-btn w-full text-left px-4 py-3 rounded-lg transition-all duration-300" data-category="ai">
+                                    <span class="flex items-center justify-between">
+                                        <span class="font-medium">🧠 AI & Machine Learning</span>
+                                        <span class="category-count text-xs">0</span>
+                                    </span>
+                                </button>
+                                <button class="category-btn w-full text-left px-4 py-3 rounded-lg transition-all duration-300" data-category="web">
+                                    <span class="flex items-center justify-between">
+                                        <span class="font-medium">🌐 Web Development</span>
+                                        <span class="category-count text-xs">0</span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Projects Grid -->
+                <div class="flex-1">
+                    <div class="mb-8">
+                        <h2 class="text-3xl font-bold text-white mb-2">
+                            <span id="active-category-title">Semua Projek</span>
+                        </h2>
+                        <p class="text-slate-400" id="active-category-desc">Menampilkan semua projek yang telah saya kerjakan</p>
+                    </div>
+                    <div id="projects-container" class="grid gap-8 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3"> 
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -68,6 +129,7 @@
         image: "./projek/projek_1/thumbnail.jpg",
         link: "./projek/projek_1/projek.html",
         tags: ["Kontrol Otomatis", "PID Controller", "Simulasi"],
+        category: "kontrol",
         color: "indigo"
         },
         {
@@ -76,6 +138,7 @@
         image: "./projek/projek_2/thumbnail.jpg",
         link: "./projek/projek_2/projek.html",
         tags: ["Flutter", "Firebase", "Google Maps API"],
+        category: "pemrograman",
         color: "emerald"
         },
         {
@@ -84,45 +147,113 @@
         image: "./projek/projek_3/thumbnail.jpg",
         link: "./projek/projek_3/projek.html",
         tags: ["Vue.js", "Laravel", "MySQL"],
+        category: "web",
         color: "pink"
         }
     ];
 
     const container = document.getElementById("projects-container");
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    const categoryTitle = document.getElementById('active-category-title');
+    const categoryDesc = document.getElementById('active-category-desc');
 
-    projects.forEach(proj => {
-        const card = document.createElement("div");
-        card.className = "card-hover rounded-2xl overflow-hidden";
+    // Category descriptions
+    const categoryInfo = {
+        all: { title: "Semua Projek", desc: "Menampilkan semua projek yang telah saya kerjakan" },
+        pemrograman: { title: "Projek Pemrograman", desc: "Aplikasi dan software development yang telah dibuat" },
+        robotik: { title: "Projek Robotik", desc: "Proyek-proyek terkait robotika dan sistem embedded" },
+        matematika: { title: "Projek Matematika", desc: "Implementasi konsep matematika dan komputasi numerik" },
+        kontrol: { title: "Kontrol Otomatis", desc: "Sistem kontrol dan otomasi untuk berbagai aplikasi" },
+        ai: { title: "AI & Machine Learning", desc: "Projek kecerdasan buatan dan pembelajaran mesin" },
+        web: { title: "Web Development", desc: "Website dan aplikasi web modern" }
+    };
 
-        card.innerHTML = `
-        <div class="relative h-48 overflow-hidden">
-            <img src="${proj.image}" alt="${proj.title}" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-${proj.color}-600 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-            <a href="${proj.link}" class="px-6 py-2 glass-effect text-white rounded-full font-semibold hover:bg-white hover:bg-opacity-20">View Details</a>
+    // Count projects per category
+    function updateCategoryCounts() {
+        const counts = { all: projects.length };
+        projects.forEach(proj => {
+            counts[proj.category] = (counts[proj.category] || 0) + 1;
+        });
+
+        categoryButtons.forEach(btn => {
+            const cat = btn.dataset.category;
+            const countSpan = btn.querySelector('.category-count');
+            countSpan.textContent = counts[cat] || 0;
+        });
+    }
+
+    // Render projects
+    function renderProjects(category = 'all') {
+        container.innerHTML = '';
+        
+        const filteredProjects = category === 'all' 
+            ? projects 
+            : projects.filter(proj => proj.category === category);
+
+        if (filteredProjects.length === 0) {
+            container.innerHTML = `
+                <div class="col-span-full text-center py-16">
+                    <div class="text-6xl mb-4">📂</div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Belum Ada Projek</h3>
+                    <p class="text-slate-400">Projek untuk kategori ini sedang dalam pengembangan</p>
+                </div>
+            `;
+            return;
+        }
+
+        filteredProjects.forEach(proj => {
+            const card = document.createElement("div");
+            card.className = "card-hover rounded-2xl overflow-hidden project-card";
+            card.dataset.category = proj.category;
+
+            card.innerHTML = `
+            <div class="relative h-48 overflow-hidden">
+                <img src="${proj.image}" alt="${proj.title}" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-${proj.color}-600 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <a href="${proj.link}" class="px-6 py-2 glass-effect text-white rounded-full font-semibold hover:bg-white hover:bg-opacity-20">View Details</a>
+                </div>
             </div>
-        </div>
-        <div class="p-6">
-            <h3 class="text-xl font-semibold text-white">${proj.title}</h3>
-            <p class="mt-2 text-slate-400">${proj.description}</p>
-            <div class="mt-4 flex flex-wrap gap-2">
-            ${proj.tags.map(tag => `
-                <span class="px-3 py-1 bg-${proj.color}-500 bg-opacity-20 text-${proj.color}-300 text-xs font-medium rounded-full border border-${proj.color}-500 border-opacity-30">${tag}</span>
-            `).join("")}
+            <div class="p-6">
+                <h3 class="text-xl font-semibold text-white">${proj.title}</h3>
+                <p class="mt-2 text-slate-400">${proj.description}</p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                ${proj.tags.map(tag => `
+                    <span class="px-3 py-1 bg-${proj.color}-500 bg-opacity-20 text-${proj.color}-300 text-xs font-medium rounded-full border border-${proj.color}-500 border-opacity-30">${tag}</span>
+                `).join("")}
+                </div>
             </div>
-        </div>
-        `;
+            `;
 
-        container.appendChild(card);
+            container.appendChild(card);
+        });
+    }
+
+    // Category filter functionality
+    categoryButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const category = this.dataset.category;
+            
+            // Update active state
+            categoryButtons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            // Update title and description
+            categoryTitle.textContent = categoryInfo[category].title;
+            categoryDesc.textContent = categoryInfo[category].desc;
+
+            // Render filtered projects
+            renderProjects(category);
+        });
     });
+
+    // Initialize
+    updateCategoryCounts();
+    renderProjects();
     </script>
 
-
-
-
-
-    <!-- Footer - FIXED -->
+    <!-- Footer -->
     <footer style="background-color: var(--dark-bg);" class="text-white border-t border-white border-opacity-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="text-center">
                 <p class="text-slate-400 text-sm">&copy; 2024 Ainur Rahman Hidayat. All rights reserved.</p>
                 <p class="text-slate-500 text-xs mt-2">Built with passion and modern web technologies</p>
